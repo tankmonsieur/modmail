@@ -189,7 +189,7 @@ class Modmail(commands.Bot):
         await c.edit(topic='Manually add user id\'s to block users.\n\n'
                            'Blocked\n-------\n\n')
         await c.send(embed=self.help_embed(ctx.prefix))
-        await ctx.send('Successfully set up server.')
+        await ctx.send('Successfully set up server :ok_hand:')
 
     @commands.command()
     @commands.has_permissions(administrator=True)
@@ -204,7 +204,7 @@ class Modmail(commands.Bot):
                     if 'User ID:' in str(chan.topic):
                         user_id = int(chan.topic.split(': ')[1])
                         user = self.get_user(user_id)
-                        await user.send(f'**{ctx.author}** has closed this modmail session.')
+                        await user.send(f'The moderators have closed this thread.')
                     await chan.delete()
         await categ.delete()
         await ctx.send('Disabled modmail.')
@@ -219,7 +219,7 @@ class Modmail(commands.Bot):
         user_id = int(ctx.channel.topic.split(': ')[1])
         user = self.get_user(user_id)
         em = discord.Embed(title='Thread Closed')
-        em.description = f'**{ctx.author}** has closed this modmail session.'
+        em.description = f'The moderators have closed this thread.'
         em.color = discord.Color.red()
         try:
             await user.send(embed=em)
@@ -357,7 +357,7 @@ class Modmail(commands.Bot):
             return await message.author.send(embed=self.blocked_em)
 
         em = discord.Embed(title='Thanks for the message!')
-        em.description = 'The moderation team will get back to you as soon as possible!'
+        em.description = 'Our mods will get back to you as soon as possible!'
         em.color = discord.Color.green()
 
         if channel is not None:
